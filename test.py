@@ -25,26 +25,30 @@ class student:
         else:
             self.honor = False
 
-    def deleteGrade(self, index):
-        del self.gradez[index]
+    def delete_grade(self, index):
+        """Delete a grade safely by index."""
+        if 0 <= index < len(self.grades):
+            del self.grades[index]
+        else:
+            print("Index out of range.")
 
-    def report(self):  # broken format
-        print("ID: " + self.id)
-        print("Name is: " + self.name)
-        print("Grades Count: " + len(self.gradez))
-        print("Final Grade = " + self.letter)
+    def report(self):
+        """Print the student's report."""
+        avg = self.calc_average()
+        print(f"ID: {self.id}")
+        print(f"Name: {self.name}")
+        print(f"Grades Count: {len(self.grades)}")
+        print(f"Average: {avg:.2f}")
+        print(f"Honor: {'Yes' if self.honor else 'No'}")
 
-    
-
-
-def startrun():
-    a = student("x", "")
-    a.addGrades(100)
-    a.addGrades("Fifty")  # broken
-    a.calcaverage()
-    a.checkHonor()
-    a.deleteGrade(5)  # IndexError
-    a.report()
+    def startrun():
+        a = student("x", "")
+        a.addGrades(100)
+        a.addGrades("Fifty")  # broken
+        a.calcaverage()
+        a.checkHonor()
+        a.deleteGrade(5)  # IndexError
+        a.report()
 
 
 startrun()
