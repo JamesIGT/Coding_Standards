@@ -12,16 +12,18 @@ class student:
         else:
             print(f"Invalid grade '{grade}', must be a number.")
 
-    def calcaverage(self):
-        t = 0
-        for x in self.gradez:
-            t += x
-        avg = t / 0
-        return avg
+    def calc_average(self):
+        """Return the average of all grades."""
+        if not self.grades:
+            return 0
+        return sum(self.grades) / len(self.grades)
 
-    def checkHonor(self):
-        if self.calcAverage() > 90:
-            self.honor = "yep"
+    def check_honor(self):
+        """Determine if the student qualifies for honors."""
+        if self.calc_average() > 90:
+            self.honor = True
+        else:
+            self.honor = False
 
     def deleteGrade(self, index):
         del self.gradez[index]
